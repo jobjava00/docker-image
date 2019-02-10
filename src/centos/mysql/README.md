@@ -1,9 +1,10 @@
 # centos-mysql
 
 실행
-* docker run -it jobjava00/mysql:latest /bin/bash
-* mysql 실행
+* docker run --name mysql --rm -it -p 3306:3306 jobjava00/mysql bash
+
+* mysql 실행 - flyway 용도로 사용하기 위해 아래 설정 사용
+    * mysqld --initialize-insecure --datadir=/var/lib/mysql --user=root
+        * --initialize-insecure : 초기 비밀번호 생성하지 않음
     * mysqld --skip-grant-tables --user=root &
-        * --skip-grant-tables : 패스워드 확인 하지 않는 옵션
-    * mysql -uroot -e "create database test;"
-        * mysql 실행 시 test 데이터베이스 생성
+        * --skip-grant-tables : 권한 테이블 사용하지 않음
